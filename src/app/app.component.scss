@@ -1,0 +1,19 @@
+.nav{
+    padding: 24px;
+    background: #39a7ff;
+    height: 82px;
+}
+.nav button{
+    border: none;
+    margin-right: 30px;
+    background: transparent;
+    font-size: 21px;
+    color: white;
+    font-weight: 600;
+    transition: .2s all ease-in-out;
+}
+.nav button:hover{
+
+    font-size: 23px;
+    
+}

@@ -1,0 +1,88 @@
+
+<section class="screen-container">
+  <div class="row h-100">
+    <div class="col-3">
+      <div class="settings-container">
+        <div class="apparatus-icons" >
+          <div class="position-relative" style="margin-right: 89px;" class="list" >
+            <div *ngFor="let item of apparatusTable">
+              <a cdkDrag (cdkDragEnded)="onDragEnded($event,1,item)">
+                <img [src]="item.imageURl" alt="">
+              </a>
+            </div>
+          </div>
+          <div class="position-relative" >
+            <div *ngFor="let item of apparatusChair">
+              <a cdkDrag (cdkDragEnded)="onDragEnded($event,2,item)">
+                <img [src]="item.imageURl" alt="">
+              </a>
+            </div>
+
+          </div>
+        </div>
+        <div class="table-layout-settings">
+
+          <div class="single-settings">
+            <label for="">Table</label>
+            <label class="ms-3">:</label>
+            <input [(ngModel)]="tableInputValue" class="ms-3" type="number" style="width: 68%;">
+            <button (click)="loadTable()" class="ms-3 btn-warning text-white fw-bold">Go</button>
+          </div>
+          <div class="single-settings">
+            <label for="">Chair</label>
+            <label class="ms-3">:</label>
+            <input [(ngModel)]="chairInputValue" class="ms-3" type="number" style="width: 68%;">
+            <button (click)="loadChair()" class="ms-3 btn-warning text-white fw-bold">Go</button>
+          </div>
+   
+          <!-- <div>
+            <label for="">Chair Structure</label>
+          </div>
+          <div class="ms-3">
+            <div>
+              <label for="">Horizontal</label>
+              <input class="ms-3" type="radio">
+            </div>
+            <div>
+              <label for="">Vertical</label>
+              <input class="ms-3" type="radio">
+            </div>
+            <div>
+              <label for="">Both</label>
+              <input class="ms-3" type="radio">
+            </div>
+          </div> -->
+
+        </div>
+        <button class="btn-primary ms-3 px-4 py-2 fs-5 rounded-3" (click)="onSubmit()">Submit</button>
+        <button class="btn-warning ms-3 px-4 py-2 fs-5 rounded-3" (click)="onReset()">Reset</button>
+   
+
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="layout-container">
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</section>
+
+<!-- <div cdkDropListGroup class="users-container">
+  <div
+    cdkDropList
+    [cdkDropListData]="users"
+    class="users-list"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div *ngFor="let user of users" cdkDrag class="user">{{ user.name }}</div>
+  </div>
+</div> -->
+
+
+

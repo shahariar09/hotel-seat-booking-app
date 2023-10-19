@@ -1,0 +1,63 @@
+.user{
+    background: #ffeb3b85;
+    margin: 10px;
+    padding: 8px;
+}
+.screen-container{
+    height: 92vh;
+    border: 1px solid rgb(172, 172, 172);
+    padding: 20px;
+}
+
+.settings-container{
+    border: 1px solid rgb(172, 172, 172);
+    height: 100%;
+}
+
+.layout-container{
+    border: 1px solid rgb(172, 172, 172);
+    height: 100%;
+}
+.apparatus-icons{
+    padding: 22px;
+    margin: 15px;
+
+    display: flex;
+    gap: 10px;
+    height: 181px;
+    border: 1px solid rgb(172, 172, 172);
+    flex-wrap: wrap;
+
+
+}
+.apparatus-icons a{
+    padding: 7px;
+    position: absolute;
+}
+.apparatus-icons img{
+    
+
+
+}
+
+.cloned-element {
+    position: absolute;
+    z-index: 999; /* Bring the clone to the front */
+    background-color: lightblue; /* Change the background color */
+    /* Add any other styling you want */
+  }
+
+
+
+
+
+  
+  .table-layout-settings{
+    border: 1px solid rgb(172, 172, 172);
+    margin: 15px;
+    padding: 10px;
+  }
+  .single-settings{
+    margin-bottom: 10px;
+  }
+  
