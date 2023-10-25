@@ -5,16 +5,16 @@
         <div class="apparatus-icons">
           <div class="position-relative" style="margin-right: 89px;" class="list">
             <div *ngFor="let item of layoutViewList">
-              <a [style.transform]="'translate3d(' + item.tablePositionX + 'px, ' + item.tablePositionY + 'px, 0px)'">
-                <img *ngIf="item.tableNo" src="./assets/table.jpg" alt="Your Image" 
+              <a [style.transform]="'translate3d(' + item.TablePositionX + 'px, ' + item.TablePositionY + 'px, 0px)'">
+                <img *ngIf="item.TableNo" src="./assets/table.jpg" alt="Your Image"
               >
               </a>
             </div>
           </div>
           <div class="position-relative">
             <div *ngFor="let item of layoutViewList">
-              <a [style.transform]="'translate3d(' + item.chairPositionX + 'px, ' + item.chairPositionY + 'px, 0px)'">
-                <img *ngIf="item.chairNo" src="./assets/chair.png" alt="Your Image"  
+              <a [style.transform]="'translate3d(' + item.ChairPositionX + 'px, ' + item.ChairPositionY + 'px, 0px)'">
+                <img *ngIf="item.ChairNo" src="./assets/chair.png" alt="Your Image"
               >
               </a>
             </div>
@@ -27,7 +27,7 @@
       <div class="layout-container">
         <div *ngFor="let item of layoutViewList">
         </div>
-        
+
       </div>
     </div>
   </div>

@@ -19,8 +19,7 @@
 export const environment = {
   production: false,
   // apiUrl: 'http://192.168.5.107:82',
-  apiUrl: 'http://192.1.168.138/RmsEngine2/',
-  // apiUrl: 'http://localhost/RmsEngine/',
+  apiUrl: 'http://192.168.1.138/RmsEngine/api/v1/',
   // apiUrl: 'http://192.168.1.138/MemWebApi',
   // apiUrl: `http://${window.location.hostname}:82`,
   version: '1', // env.npm_package_version + '-dev',
