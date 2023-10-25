@@ -41,12 +41,12 @@ export class LayoutService {
   }
 
   order(dataList: number[]): Observable<any> {
-    const url = environment.apiUrl+"WeatherForecast/UpdateLayout"; // Replace with your API endpoint
+    const url = environment.apiUrl+"Layouts/UpdateLayout"; // Replace with your API endpoint
 
     return this.httpClient.post(url, dataList);
   }
   deleteItem(layoutName: any): Observable<any> {
-    const url = environment.apiUrl+`WeatherForecast/RemoveLayout?layoutName=${layoutName}`; // Replace with your API endpoint
-    return this.httpClient.get(url);
+    const url = environment.apiUrl+`Layouts/Remove?layoutName=${layoutName}`; // Replace with your API endpoint
+    return this.httpClient.delete(url);
   }
 }

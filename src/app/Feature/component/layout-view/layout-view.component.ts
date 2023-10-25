@@ -166,7 +166,7 @@ export class LayoutViewComponent implements OnInit {
   }
   deleteLayout(){
     debugger
-    this.layoutService.deleteItem(this.layoutViewList[0].name).subscribe(
+    this.layoutService.deleteItem(this.layoutViewList[0].Name).subscribe(
       (data)=>{
         console.log(data);
         this.getLayoutByName()

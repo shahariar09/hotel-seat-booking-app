@@ -38,7 +38,7 @@ export class OrderComponent implements OnInit {
     for (var i = 1; i <= this.tableInputValue; i++) {
       this.apparatusTable.push(
         {
-          id: i,
+          Id: i,
           imageURl: '../../../../assets/table.jpg',
         }
       )
@@ -64,7 +64,7 @@ export class OrderComponent implements OnInit {
     for (var i = 1; i <= this.chairInputValue; i++) {
       this.apparatusChair.push(
         {
-          id: i,
+          Id: i,
           imageURl: './assets/chair.png',
         }
       )
@@ -90,10 +90,10 @@ export class OrderComponent implements OnInit {
       // console.log('Y', event.dropPoint.y);
 
       var layouTableProperty = {
-        name: "First Layout",
-        tableNo: item.id,
-        tablePositionX: event.dropPoint.x,
-        tablePositionY: event.dropPoint.y,
+        Name: "First Layout",
+        TableNo: item.id,
+        TablePositionX: event.dropPoint.x,
+        TablePositionY: event.dropPoint.y,
 
       }
 
@@ -104,10 +104,10 @@ export class OrderComponent implements OnInit {
       // console.log('Y', event.dropPoint.y);
 
       var layoutChairProperty = {
-        name: "First Layout",
-        chairNo: item.id,
-        chairPositionX: event.dropPoint.x,
-        chairPositionY: event.dropPoint.y,
+        Name: "First Layout",
+        ChairNo: item.Id,
+        ChairPositionX: event.dropPoint.x,
+        ChairPositionY: event.dropPoint.y,
       }
 
       this.layout.push(layoutChairProperty);
@@ -162,14 +162,14 @@ export class OrderComponent implements OnInit {
 
   selectSeat(item){
     debugger
-    if(this.selectedSeatList.includes(item.id)){
+    if(this.selectedSeatList.includes(item.Id)){
 
-      var selectedItem = this.selectedSeatList.filter(c=>c==item.id)
+      var selectedItem = this.selectedSeatList.filter(c=>c==item.Id)
       var index = this.selectedSeatList.indexOf(selectedItem[0]);
       this.selectedSeatList.splice(index,1)
     }
     else{
-      this.selectedSeatList.push(item.id)
+      this.selectedSeatList.push(item.Id)
     }
 
 
