@@ -11,7 +11,7 @@ export class LayoutService {
   constructor(
     private httpClient: HttpClient,
   ) {
-    
+
    }
 
 
@@ -27,7 +27,7 @@ export class LayoutService {
 
     // var fdf= this.httpClient.post<any>(url,data,httpOptions)
     try {
-      return this.httpClient.post<any>(environment.apiUrl+"WeatherForecast/SaveLayout", data, httpOptions).toPromise();
+      return this.httpClient.post<any>(environment.apiUrl+"Layouts/SaveLayout", data, httpOptions).toPromise();
     } catch (error) {
       console.error('HTTP Request Error:', error);
       throw error; // Rethrow the error to handle it in the calling code.
@@ -35,8 +35,8 @@ export class LayoutService {
   }
 
   getLayoutByName(layoutName){
-    var data =  this.httpClient.get(environment.apiUrl+"WeatherForecast/GetLayout?layoutName="+ layoutName);
-    
+    var data =  this.httpClient.get<any>(environment.apiUrl+"Layouts/GetAllLayout?layoutName="+ layoutName);
+
     return data;
   }
 

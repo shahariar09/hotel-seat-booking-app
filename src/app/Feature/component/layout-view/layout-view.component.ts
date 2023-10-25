@@ -38,12 +38,12 @@ export class LayoutViewComponent implements OnInit {
   getLayoutByName(){
     this.layoutService.getLayoutByName("First Layout").subscribe(
       (data)=>{
-        this.layoutViewList = data;
+        this.layoutViewList = data.Data;
         console.log(this.layoutViewList);
       },
       (err)=>{
         console.log(err);
-        
+
       }
     )
   }
@@ -59,7 +59,7 @@ export class LayoutViewComponent implements OnInit {
       )
     }
   }
-  
+
   loadChair() {
     var itarate = 10;
     for (var i = 1; i <= this.chairInputValue; i++) {
@@ -135,7 +135,7 @@ export class LayoutViewComponent implements OnInit {
     // Save the initial mouse coordinates when drag starts
     this.initialX = event.source.element.nativeElement.getBoundingClientRect().left;
     this.initialY = event.source.element.nativeElement.getBoundingClientRect().top;
-    
+
   }
 
   onDrop(event: CdkDragDrop<string[]>): void {
@@ -173,7 +173,7 @@ export class LayoutViewComponent implements OnInit {
       },
       (err)=>{
         console.log(err);
-        
+
       }
     )
   }

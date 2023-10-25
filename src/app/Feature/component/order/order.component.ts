@@ -50,12 +50,12 @@ export class OrderComponent implements OnInit {
   getLayout(){
     this.layoutService.getLayoutByName("First Layout").subscribe(
       (data)=>{
-        this.layoutViewList = data;
+        this.layoutViewList = data.Data;
         console.log(this.layoutViewList);
       },
       (err)=>{
         console.log(err);
-        
+
       }
     )
   }
@@ -134,7 +134,7 @@ export class OrderComponent implements OnInit {
     // Save the initial mouse coordinates when drag starts
     this.initialX = event.source.element.nativeElement.getBoundingClientRect().left;
     this.initialY = event.source.element.nativeElement.getBoundingClientRect().top;
-    
+
   }
 
   onDrop(event: CdkDragDrop<string[]>): void {
@@ -155,7 +155,7 @@ export class OrderComponent implements OnInit {
     return false; // Example: disable dragging for 'Item 3'
   }
 
-  
+
   goToView(){
     this.router.navigate([environment.apiUrl+'view']);
   }
@@ -163,7 +163,7 @@ export class OrderComponent implements OnInit {
   selectSeat(item){
     debugger
     if(this.selectedSeatList.includes(item.id)){
-      
+
       var selectedItem = this.selectedSeatList.filter(c=>c==item.id)
       var index = this.selectedSeatList.indexOf(selectedItem[0]);
       this.selectedSeatList.splice(index,1)
@@ -171,9 +171,9 @@ export class OrderComponent implements OnInit {
     else{
       this.selectedSeatList.push(item.id)
     }
-   
-    
-    
+
+
+
     console.log( item);
     console.log( this.selectedSeatList);
     console.log(this.selectedSeatList.includes(89));
@@ -189,11 +189,11 @@ export class OrderComponent implements OnInit {
       },
       (err)=>{
         console.log(err);
-        
+
       }
     )
 
-    
+
   }
 
 }

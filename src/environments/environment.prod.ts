@@ -14,7 +14,8 @@ export const environment = {
   production: true,
   // apiUrl: 'https://localhost:7118',
   // apiUrl: 'http://192.168.5.107:82',
-  apiUrl: 'http://localhost/RmsEngine/',
+  apiUrl: 'http://192.168.1.138/RmsEngine/api/v1/',
+
   version: '1', // env.npm_package_version + '-dev',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
