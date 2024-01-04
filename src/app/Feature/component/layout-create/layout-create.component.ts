@@ -12,8 +12,8 @@ import { LayoutService } from 'src/app/layout.service';
 export class LayoutCreateComponent implements OnInit {
 
   title = 'hotel-seat-booking';
-  tableInputValue: any=100;
-  chairInputValue: any=100;
+  tableInputValue: any=3;
+  chairInputValue: any=3;
   layout: any[] = [];
 
   apparatusTable: any = [];
