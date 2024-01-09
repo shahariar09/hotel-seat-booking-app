@@ -12,8 +12,8 @@ import { LayoutService } from 'src/app/layout.service';
 export class LayoutCreateComponent implements OnInit {
 
   title = 'hotel-seat-booking';
-  tableInputValue: any=3;
-  chairInputValue: any=3;
+  tableInputValue: any=10;
+  chairInputValue: any=10;
   layout: any[] = [];
 
   apparatusTable: any = [];
@@ -22,6 +22,10 @@ export class LayoutCreateComponent implements OnInit {
 
   initialX: number;
   initialY: number;
+  screenWidth: number;
+  screenHeight: number;
+  tableWidth: number;
+  chairWidth: number;
 
 
   constructor(
@@ -30,6 +34,10 @@ export class LayoutCreateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.screenWidth = window.innerWidth;
+    this.screenHeight = window.innerHeight;
+    this.tableWidth = (3*this.screenWidth)/100
+    this.chairWidth = (3*this.screenWidth)/100
     this.loadTable();
     this.loadChair();
   }
@@ -88,8 +96,8 @@ export class LayoutCreateComponent implements OnInit {
       var layouTableProperty = {
         name: "First Layout",
         tableNo: item.id,
-        tablePositionX: event.source.getFreeDragPosition().x,
-        tablePositionY: event.source.getFreeDragPosition().y,
+        tablePositionX: (event.source.getFreeDragPosition().x*100)/this.screenWidth,
+        tablePositionY: (event.source.getFreeDragPosition().y*100)/this.screenHeight,
 
       }
 
@@ -111,8 +119,8 @@ export class LayoutCreateComponent implements OnInit {
       var layoutChairProperty = {
         name: "First Layout",
         chairNo: item.id,
-        chairPositionX: event.source.getFreeDragPosition().x,
-        chairPositionY: event.source.getFreeDragPosition().y,
+        chairPositionX: (event.source.getFreeDragPosition().x*100)/this.screenWidth,
+        chairPositionY: (event.source.getFreeDragPosition().y*100)/this.screenHeight,
       }
 
       this.layout.push(layoutChairProperty);
@@ -137,8 +145,9 @@ export class LayoutCreateComponent implements OnInit {
   }
 
   onSubmit() {
-
+    debugger
     this.layoutService.sendRequesta(this.layout);
+   
   }
   goToView() {
     this.router.navigate(['view']);

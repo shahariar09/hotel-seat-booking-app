@@ -5,16 +5,54 @@
         <div class="apparatus-icons">
           <div class="position-relative" style="margin-right: 89px;" class="list">
             <div *ngFor="let item of layoutViewList">
-              <a [style.transform]="'translate3d(' + item.TablePositionX + 'px, ' + item.TablePositionY + 'px, 0px)'">
-                <img *ngIf="item.TableNo" src="./assets/table.jpg" alt="Your Image"
+              <!-- <p class="d-inline-block position-absolute" style="transform:translate3d(54.29px, 10.23px, 0px);">!</p> -->
+              <a [style.transform]="'translate3d(' + item.tablePositionX + 'px, ' + item.tablePositionY + 'px, 0px)'">
+                <img *ngIf="item.tableNo" src="./assets/table.jpg" alt="Your Image" [ngStyle]="{'width.px': tableWidth}"
               >
               </a>
             </div>
           </div>
           <div class="position-relative">
             <div *ngFor="let item of layoutViewList">
-              <a [style.transform]="'translate3d(' + item.ChairPositionX + 'px, ' + item.ChairPositionY + 'px, 0px)'">
-                <img *ngIf="item.ChairNo" src="./assets/chair.png" alt="Your Image"
+              <a [style.transform]="'translate3d(' + item.chairPositionX + 'px, ' + item.chairPositionY + 'px, 0px)'">
+
+                <img *ngIf="item.chairNo" src="./assets/chair.png" alt="Your Image" [ngStyle]="{'width.px': chairWidth}"
+              >
+              </a>
+            </div>
+          </div>
+        </div>
+        <button class="btn-primary ms-3 px-4 py-2 fs-5 rounded-3" (click)="deleteLayout()">Reset</button>
+      </div>
+    </div>
+    <div   class="col-9">
+      <div class="layout-container">
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- <section class="screen-container">
+  <div class="row h-100">
+    <div class="col-3">
+      <div class="settings-container">
+        <div class="apparatus-icons">
+          <div class="position-relative" style="margin-right: 89px;" class="list">
+            <div *ngFor="let item of layoutViewList">
+              <a [style.transform]="'translate3d(' + item.tablePositionX + 'px, ' + item.tablePositionY + 'px, 0px)'">
+                <img *ngIf="item.tableNo" src="./assets/table.jpg" alt="Your Image"
+              >
+              </a>
+            </div>
+          </div>
+          <div class="position-relative">
+            <div *ngFor="let item of layoutViewList">
+              <a [style.transform]="'translate3d(' + item.chairPositionX + 'px, ' + item.chairPositionY + 'px, 0px)'">
+                <img *ngIf="item.chairNo" src="./assets/chair.png" alt="Your Image"
               >
               </a>
             </div>
@@ -26,25 +64,12 @@
     <div class="col-9">
       <div class="layout-container">
         <div *ngFor="let item of layoutViewList">
+         
         </div>
-
       </div>
     </div>
   </div>
+</section> -->
 
 
 
-
-
-</section>
-
-<!-- <div cdkDropListGroup class="users-container">
-  <div
-    cdkDropList
-    [cdkDropListData]="users"
-    class="users-list"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <div *ngFor="let user of users" cdkDrag class="user">{{ user.name }}</div>
-  </div>
-</div> -->

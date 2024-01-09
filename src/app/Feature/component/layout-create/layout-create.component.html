@@ -1,20 +1,20 @@
 
 <section class="screen-container">
   <div class="row h-100">
-    <div class="col-3">
+    <div  class="col-3">
       <div class="settings-container">
         <div class="apparatus-icons" >
           <div class="position-relative" style="margin-right: 89px;" class="list" >
             <div *ngFor="let item of apparatusTable">
               <a cdkDrag (cdkDragEnded)="onDragEnded($event,1,item)">
-                <img [src]="item.imageURl" alt="">
+                <img [src]="item.imageURl" alt="" [ngStyle]="{'width.px': tableWidth}">
               </a>
             </div>
           </div>
           <div class="position-relative" >
             <div *ngFor="let item of apparatusChair">
               <a cdkDrag (cdkDragEnded)="onDragEnded($event,2,item)">
-                <img [src]="item.imageURl" alt="">
+                <img [src]="item.imageURl" alt="" [ngStyle]="{'width.px': chairWidth}">
               </a>
             </div>
 
@@ -62,7 +62,7 @@
     </div>
     <div class="col-9">
       <div class="layout-container">
-
+    
       </div>
     </div>
   </div>

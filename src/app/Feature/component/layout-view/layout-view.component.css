@@ -40,11 +40,16 @@
 
 }
 
+
+
 .cloned-element {
     position: absolute;
     z-index: 999; /* Bring the clone to the front */
     background-color: lightblue; /* Change the background color */
     /* Add any other styling you want */
+  }
+  a{
+    position: absolute;
   }
 
 
