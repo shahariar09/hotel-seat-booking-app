@@ -9,13 +9,17 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LayoutViewComponent } from './Feature/component/layout-view/layout-view.component';
 import { LayoutCreateComponent } from './Feature/component/layout-create/layout-create.component';
 import { OrderComponent } from './Feature/component/order/order.component';
+import { CanvasComponent } from './Feature/component/canvas/canvas.component';
+import { SafeSvgPipeService } from './SafeSvgPipe.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutViewComponent,
     LayoutCreateComponent,
-    OrderComponent
+    OrderComponent,
+    CanvasComponent,
+    SafeSvgPipeService
   ],
   imports: [
     BrowserModule,

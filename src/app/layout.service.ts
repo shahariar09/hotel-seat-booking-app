@@ -49,4 +49,7 @@ export class LayoutService {
     const url = environment.apiUrl+"WeatherForecast/RemoveLayout?layoutName="+layoutName; // Replace with your API endpoint
     return this.httpClient.delete(url);
   }
+
+
+
 }

@@ -3,31 +3,31 @@
     <div class="col-3">
       <div class="settings-container">
         <div class="apparatus-icons">
-          <div class="position-relative" style="margin-right: 89px;" class="list">
-            <div *ngFor="let item of layoutViewList">
-              <!-- <p class="d-inline-block position-absolute" style="transform:translate3d(54.29px, 10.23px, 0px);">!</p> -->
-              <a [style.transform]="'translate3d(' + item.tablePositionX + 'px, ' + item.tablePositionY + 'px, 0px)'">
-                <img *ngIf="item.tableNo" src="./assets/table.jpg" alt="Your Image" [ngStyle]="{'width.px': tableWidth}"
-              >
-              </a>
-            </div>
-          </div>
-          <div class="position-relative">
-            <div *ngFor="let item of layoutViewList">
-              <a [style.transform]="'translate3d(' + item.chairPositionX + 'px, ' + item.chairPositionY + 'px, 0px)'">
-
-                <img *ngIf="item.chairNo" src="./assets/chair.png" alt="Your Image" [ngStyle]="{'width.px': chairWidth}"
-              >
-              </a>
-            </div>
-          </div>
+      
         </div>
         <button class="btn-primary ms-3 px-4 py-2 fs-5 rounded-3" (click)="deleteLayout()">Reset</button>
       </div>
     </div>
     <div   class="col-9">
-      <div class="layout-container">
-        
+      <div class="layout-container" id="canvas" class="zoom-container" [ngStyle]="{'transform': 'scale(' + zoomLevel + ')'}" (wheel)="onZoom($event)">
+        <div class="position-relative" style="margin-right: 89px;" class="list">
+          <div *ngFor="let item of layoutViewList">
+            <!-- <p class="d-inline-block position-absolute" style="transform:translate3d(54.29px, 10.23px, 0px);">!</p> -->
+            <a [style.transform]="'translate3d(' + item.tablePositionX + 'px, ' + item.tablePositionY + 'px, 0px)'">
+              <img *ngIf="item.tableNo" src="./assets/table.jpg" alt="Your Image" [ngStyle]="{'width.px': tableWidth}"
+            >
+            </a>
+          </div>
+        </div>
+        <div class="position-relative">
+          <div *ngFor="let item of layoutViewList">
+            <a [style.transform]="'translate3d(' + item.chairPositionX + 'px, ' + item.chairPositionY + 'px, 0px)'">
+
+              <img *ngIf="item.chairNo" src="./assets/chair.png" alt="Your Image" [ngStyle]="{'width.px': chairWidth}"
+            >
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

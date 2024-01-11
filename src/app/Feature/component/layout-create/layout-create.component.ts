@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, CdkDragMove, CdkDragEnd, CdkDragStart } from '@angular/cdk/drag-drop';
 
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout.service';
+import * as html2canvas from 'html2canvas';
+
 
 @Component({
   selector: 'app-layout-create',
@@ -12,8 +14,8 @@ import { LayoutService } from 'src/app/layout.service';
 export class LayoutCreateComponent implements OnInit {
 
   title = 'hotel-seat-booking';
-  tableInputValue: any=10;
-  chairInputValue: any=10;
+  tableInputValue: any = 10;
+  chairInputValue: any = 10;
   layout: any[] = [];
 
   apparatusTable: any = [];
@@ -26,6 +28,8 @@ export class LayoutCreateComponent implements OnInit {
   screenHeight: number;
   tableWidth: number;
   chairWidth: number;
+  position: DOMRect;
+  @ViewChild('captureElement') captureElement: ElementRef;
 
 
   constructor(
@@ -36,10 +40,16 @@ export class LayoutCreateComponent implements OnInit {
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
     this.screenHeight = window.innerHeight;
-    this.tableWidth = (3*this.screenWidth)/100
-    this.chairWidth = (3*this.screenWidth)/100
+    this.tableWidth = (4 * this.screenWidth) / 100
+    this.chairWidth = (3 * this.screenWidth) / 100
     this.loadTable();
     this.loadChair();
+
+    var canvas = document.getElementById('canvas');
+
+    this.position = canvas.getBoundingClientRect();
+    console.log(this.position.top);
+    console.log(this.position.left);
   }
 
   loadTable() {
@@ -53,7 +63,7 @@ export class LayoutCreateComponent implements OnInit {
       )
     }
   }
-  
+
   loadChair() {
     var itarate = 10;
     for (var i = 1; i <= this.chairInputValue; i++) {
@@ -66,6 +76,7 @@ export class LayoutCreateComponent implements OnInit {
     }
   }
   handleDrop(event: CdkDragDrop<any>) {
+    
 
     this.initialPosition = { x: event.item.element.nativeElement.style.left, y: event.item.element.nativeElement.style.top };
 
@@ -79,8 +90,8 @@ export class LayoutCreateComponent implements OnInit {
 
   onDragEnded(event: CdkDragEnd, apparatusType, item) {
     console.log(event.source.getFreeDragPosition());
-    
-    
+
+
 
 
     if (apparatusType == 1) {
@@ -96,10 +107,13 @@ export class LayoutCreateComponent implements OnInit {
       var layouTableProperty = {
         name: "First Layout",
         tableNo: item.id,
-        tablePositionX: (event.source.getFreeDragPosition().x*100)/this.screenWidth,
-        tablePositionY: (event.source.getFreeDragPosition().y*100)/this.screenHeight,
+        tablePositionX: event.source.getFreeDragPosition().x-this.position.left,
+        tablePositionY: event.source.getFreeDragPosition().y,
+        // tablePositionX: (((event.source.getFreeDragPosition().x-this.position.left) * 1000) / this.screenWidth),
+        // tablePositionY: (((event.source.getFreeDragPosition().y-this.position.top) * 1000) / this.screenHeight),
 
       }
+      
 
       this.layout.push(layouTableProperty);
 
@@ -107,7 +121,7 @@ export class LayoutCreateComponent implements OnInit {
 
     }
     else {
-      
+
 
       if (this.layout.filter(c => c.chairNo == item.id).length > 0) {
 
@@ -119,8 +133,8 @@ export class LayoutCreateComponent implements OnInit {
       var layoutChairProperty = {
         name: "First Layout",
         chairNo: item.id,
-        chairPositionX: (event.source.getFreeDragPosition().x*100)/this.screenWidth,
-        chairPositionY: (event.source.getFreeDragPosition().y*100)/this.screenHeight,
+        chairPositionX: event.source.getFreeDragPosition().x-this.position.left,
+        chairPositionY: event.source.getFreeDragPosition().y,
       }
 
       this.layout.push(layoutChairProperty);
@@ -145,14 +159,29 @@ export class LayoutCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger
+    // this.captureToCanvas()
+
     this.layoutService.sendRequesta(this.layout);
-   
+
   }
   goToView() {
     this.router.navigate(['view']);
   }
-  onReset(){
+  onReset() {
 
   }
+
+
+  captureToCanvas() {
+    const elementToCapture = this.captureElement.nativeElement;
+  
+    html2canvas.default(elementToCapture).then((canvas) => {
+      // The canvas is now ready, you can do further processing
+      // or save the canvas image as needed.
+      this.captureElement.nativeElement.appendChild(canvas);
+    });
+  }
+
+  
 }
+

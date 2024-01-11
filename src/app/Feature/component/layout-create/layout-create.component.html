@@ -1,5 +1,5 @@
 
-<section class="screen-container">
+<section class="screen-container" #captureElement>
   <div class="row h-100">
     <div  class="col-3">
       <div class="settings-container">
@@ -14,10 +14,10 @@
           <div class="position-relative" >
             <div *ngFor="let item of apparatusChair">
               <a cdkDrag (cdkDragEnded)="onDragEnded($event,2,item)">
-                <img [src]="item.imageURl" alt="" [ngStyle]="{'width.px': chairWidth}">
+                <!-- <img [src]="item.imageURl" alt="" [ngStyle]="{'width.px': chairWidth}"> -->
               </a>
             </div>
-
+        
           </div>
         </div>
         <div class="table-layout-settings">
@@ -61,28 +61,16 @@
       </div>
     </div>
     <div class="col-9">
-      <div class="layout-container">
-    
+      <div class="layout-container" id="canvas">
+        <!-- <canvas id="myCanvas" width="500"  style="border:1px solid #000000;"></canvas> -->
+
       </div>
     </div>
   </div>
 
-
-
-
-
 </section>
+<div #canvasContainer></div>
 
-<!-- <div cdkDropListGroup class="users-container">
-  <div
-    cdkDropList
-    [cdkDropListData]="users"
-    class="users-list"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <div *ngFor="let user of users" cdkDrag class="user">{{ user.name }}</div>
-  </div>
-</div> -->
 
 
 

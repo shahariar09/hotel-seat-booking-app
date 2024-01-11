@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutViewComponent } from './Feature/component/layout-view/layout-view.component';
 import { LayoutCreateComponent } from './Feature/component/layout-create/layout-create.component';
 import { OrderComponent } from './Feature/component/order/order.component';
+import { CanvasComponent } from './Feature/component/canvas/canvas.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,7 @@ const routes: Routes = [
      path: 'view', component: LayoutViewComponent 
   },
   {
-     path: 'order', component: OrderComponent 
+     path: 'order', component: CanvasComponent 
   }
 ];
 

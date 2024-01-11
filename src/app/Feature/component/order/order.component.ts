@@ -161,7 +161,7 @@ export class OrderComponent implements OnInit {
   }
 
   selectSeat(item){
-    debugger
+    
     if(this.selectedSeatList.includes(item.Id)){
 
       var selectedItem = this.selectedSeatList.filter(c=>c==item.Id)

@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, CdkDragMove, CdkDragEnd, CdkDragStart } from '@angular/cdk/drag-drop';
 
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout.service';
 import { environment } from 'src/environments/environment';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { setDragData } from 'ngx-drag-drop/lib/dnd-utils';
+import { SvgConversionService } from 'src/app/svgConversion.service';
 
 
 @Component({
@@ -29,18 +32,59 @@ export class LayoutViewComponent implements OnInit {
   screenHeight: number;
   tableWidth: number;
   chairWidth: number;
+  position: DOMRect;
+  sanitizedSvg: SafeHtml;
+  svgByteCode: string;
+  width: number;
+
 
 
   constructor(
     private layoutService: LayoutService,
     private router: Router,
-  ) { }
+    private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef,
+    private svgConversionService: SvgConversionService
+  ) { 
+   
+  }
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
     this.screenHeight = window.innerHeight;
-    this.tableWidth = (3.2*this.screenWidth)/100
-    this.chairWidth = (3.2*this.screenWidth)/100
+    this.tableWidth = (4*this.screenWidth)/100
+    this.chairWidth = (3*this.screenWidth)/100
+
+    var canvas = document.getElementById('canvas');
+
+
+    
+    this.width = canvas.offsetWidth
+
+  // Get the position of the div
+  this.position = canvas.getBoundingClientRect();
+  console.log(this.position.top);
+  console.log(this.position.left);
+
+
+
     this.getLayoutByName()
+
+//     var c = document.getElementById("myCanvas")!;
+// var ctx = c.getContext("2d");
+//     ctx.beginPath();
+//     ctx.arc(95,50,40,0,2*Math.PI);
+//     ctx.arc(105,50,40,0,2*Math.PI);
+//     ctx.stroke();
+
+
+
+  }
+
+
+
+  sanitizeSvg() {
+    this.sanitizedSvg = this.svgConversionService.base64ToSvg(this.svgByteCode),toString();
+    console.log(this.sanitizedSvg);
   }
 
   getLayoutByName(){
@@ -51,16 +95,16 @@ export class LayoutViewComponent implements OnInit {
         this.layoutViewList.forEach(element => {
           
           if(element.chairPositionX){
-            element.chairPositionX = ((element.chairPositionX*this.screenWidth)/100)
+            element.chairPositionX = (element.chairPositionX)+22+45
           }
           if(element.chairPositionY){
-            element.chairPositionY = ((element.chairPositionY*this.screenHeight)/100)
+            element.chairPositionY = (element.chairPositionY)+22+45
           }
           if(element.tablePositionX){
-            element.tablePositionX = ((element.tablePositionX*this.screenWidth)/100)
+            element.tablePositionX = (element.tablePositionX)+22+45
           }
           if(element.tablePositionY){
-            element.tablePositionY = ((element.tablePositionY*this.screenHeight)/100)
+            element.tablePositionY = (element.tablePositionY)+22+25
           }
         });
         console.log(this.layoutViewList);
@@ -72,7 +116,8 @@ export class LayoutViewComponent implements OnInit {
     )
   }
   onSubmit() {
-    console.log(this.layout);
+
+    
     this.layoutService.sendRequesta(this.layout);
   }
   goToView(){
@@ -91,5 +136,31 @@ export class LayoutViewComponent implements OnInit {
       }
     )
   }
+
+  zoomLevel = 1;
+  zoomStep = 0.1;
+
+  onZoom(event: WheelEvent) {
+    event.preventDefault();
+
+    if (event.deltaY > 0) {
+      // Zoom out
+      this.zoomOut();
+    } else {
+      // Zoom in
+      this.zoomIn();
+    }
+  }
+
+  zoomIn() {
+    this.zoomLevel += this.zoomStep;
+  }
+
+  zoomOut() {
+    if (this.zoomLevel > this.zoomStep) {
+      this.zoomLevel -= this.zoomStep;
+    }
+  }
+ 
 
 }
